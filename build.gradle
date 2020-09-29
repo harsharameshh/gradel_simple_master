@@ -80,7 +80,7 @@ artifactory {
     contextUrl = "${artifactory_contextUrl}"   
     publish {
         repository {
-            repoKey = 'gradel_demo'
+             repoKey = 'Gradle_Demo'
             username = "${artifactory_user}"
             password = "${artifactory_password}"
             maven = true
