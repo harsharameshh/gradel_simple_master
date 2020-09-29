@@ -22,7 +22,7 @@ node() {
 				}
 
 			stage('Sonar scan') {
-				withEnv( ["GRADLE_OPTS= -Dsonar.host.url=http://54.218.186.159:9000 -Dsonar.projectKey=gradel_demo -Dsonar.login=admin -Dsonar.password=admin"]) {
+				withEnv( ["GRADLE_OPTS= -Dsonar.host.url=http://34.208.60.210:9000 -Dsonar.projectKey=Gradle_Demo -Dsonar.login=admin -Dsonar.password=admin"]) {
 					sh "./gradlew sonarqube"
 				}
 			}
