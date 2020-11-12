@@ -9,12 +9,14 @@ node() {
 			}
 
 			stage('Build') {
-			sh "./gradlew clean assemble"
+			//sh "./gradlew clean assemble"
+			$ gradle clean assemble
 			}
 			stage('Run Tests') {
 				
 				try {
-					sh "./gradlew build"
+					//sh "./gradlew build"
+					$ gradle build
 				}
 				finally {
 					step([$class: 'JUnitResultArchiver',allowEmptyResults: true, testResults: '**/test-results/**/*.xml'])
