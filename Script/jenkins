@@ -9,7 +9,7 @@ node() {
 			}
 
 			stage('Build') {
-			sh "./gradlew clean assemble"
+			//sh "./gradlew clean assemble"
 			}
 			stage('Run Tests') {
 				
