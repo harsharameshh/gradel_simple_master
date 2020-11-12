@@ -9,8 +9,9 @@ node() {
 			}
 
 			stage('Build') {
+			bat "./gradlew clean assemble"
 			//sh "./gradlew clean assemble"
-			$ gradle clean assemble
+			//$ gradle clean assemble
 			}
 			stage('Run Tests') {
 				
