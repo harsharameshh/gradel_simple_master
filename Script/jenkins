@@ -42,7 +42,7 @@ node(Windows||Linux) {
 			stage('Sonar scan') {
                 if(node==Windows)
                 {
-                    bat "./gradlew sonarqube \ -Dsonar.projectKey=harsha \ -Dsonar.host.url=http://localhost:9000 \ -Dsonar.login=3fffc8d1c752533b09957b430e00a9afbac7ba27"
+                    bat "./gradlew sonarqube  -Dsonar.projectKey=harsha  -Dsonar.host.url=http://localhost:9000  -Dsonar.login=3fffc8d1c752533b09957b430e00a9afbac7ba27"
                 }
                 else{
 				withEnv( ["GRADLE_OPTS= -Dsonar.host.url=http://34.208.60.210:9000 -Dsonar.projectKey=Gradle_Demo -Dsonar.login=admin -Dsonar.password=admin"]) {
