@@ -53,7 +53,7 @@ node() {
 			}
 
 			stage('Publish to Artifactory') {
-						sh "./gradlew artifactoryPublish"
+					//	sh "./gradlew artifactoryPublish"
 			}
 }
 }
