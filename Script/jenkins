@@ -1,7 +1,7 @@
 node() {
 	def buildVersion = "1.0.0.${env.BUILD_NUMBER}"
 	def artifactoryPublishRepo = 'Gradel_master'
-	def node =="Windows"
+	def node ='Windows'
 
 	dir('jenkins') {
 			
