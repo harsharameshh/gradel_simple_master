@@ -1,7 +1,7 @@
 node() {
 	def buildVersion = "1.0.0.${env.BUILD_NUMBER}"
 	def artifactoryPublishRepo = 'Gradel_master'
-	def node ='Windows'
+	def nodeOs=isUnix() ? 'Linux' : 'Windows'
 
 	dir('jenkins') {
 			
@@ -12,7 +12,7 @@ node() {
 
 			stage('Clean') 
             {
-                if(node==Windows)
+                if(nodeOs=='Windows')
                 {
 			bat "./gradlew clean assemble"
                 }
@@ -25,7 +25,7 @@ node() {
 			stage('build') {
 				
 				try {
-                    if(node==Windows)
+                    if(nodeOs=='Windows')
                     {
 						bat "./gradlew build"
                     }
@@ -41,7 +41,7 @@ node() {
 				}
 
 			stage('Sonar scan') {
-                if(node==Windows)
+                if(nodeOs=='Windows')
                 {
                     bat "./gradlew sonarqube  -Dsonar.projectKey=harsha  -Dsonar.host.url=http://localhost:9000  -Dsonar.login=3fffc8d1c752533b09957b430e00a9afbac7ba27"
                 }
