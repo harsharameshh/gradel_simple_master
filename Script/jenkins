@@ -1,23 +1,38 @@
-node() {
+node(Windows||Linux) {
 	def buildVersion = "1.0.0.${env.BUILD_NUMBER}"
 	def artifactoryPublishRepo = 'Gradel_master'
 
 	dir('jenkins') {
-			stage('Checkout') {
+			
+            stage('Checkout') {
 				git 'https://github.com/harsharameshh/gradel_simple_master.git'
-				//sh 'chmod +x ./gradlew '
+				
 			}
 
-			stage('Build') {
+			stage('Clean') 
+            {
+                if(node==Windows)
+                {
 			bat "./gradlew clean assemble"
-			//sh "./gradlew clean assemble"
-			//$ gradle clean assemble
+                }
+                else{
+                    sh "./gradlew clean assemble"
+
+                }
+			
 			}
-			stage('Run Tests') {
+			stage('build') {
 				
 				try {
-					//sh "./gradlew build"
-					$ gradle build
+                    if(node==Windows)
+                    {
+						bat "./gradlew build"
+                    }
+                    else
+                    {
+					sh "./gradlew build"
+                    }
+					
 				}
 				finally {
 					step([$class: 'JUnitResultArchiver',allowEmptyResults: true, testResults: '**/test-results/**/*.xml'])
@@ -25,8 +40,14 @@ node() {
 				}
 
 			stage('Sonar scan') {
+                if(node==Windows)
+                {
+                    bat "./gradlew sonarqube \ -Dsonar.projectKey=harsha \ -Dsonar.host.url=http://localhost:9000 \ -Dsonar.login=3fffc8d1c752533b09957b430e00a9afbac7ba27"
+                }
+                else{
 				withEnv( ["GRADLE_OPTS= -Dsonar.host.url=http://34.208.60.210:9000 -Dsonar.projectKey=Gradle_Demo -Dsonar.login=admin -Dsonar.password=admin"]) {
 					sh "./gradlew sonarqube"
+                }   
 				}
 			}
 
