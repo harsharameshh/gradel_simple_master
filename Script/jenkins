@@ -5,11 +5,11 @@ node() {
 	dir('jenkins') {
 			stage('Checkout') {
 				git 'https://github.com/harsharameshh/gradel_simple_master.git'
-				sh 'chmod +x ./gradlew '
+				//sh 'chmod +x ./gradlew '
 			}
 
 			stage('Build') {
-			//sh "./gradlew clean assemble"
+			sh "./gradlew clean assemble"
 			}
 			stage('Run Tests') {
 				
